@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
 
 public class Mole : MonoBehaviour
 {
@@ -14,33 +15,19 @@ public class Mole : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         moleCollider = GetComponent<Collider2D>();
-
         imageComponent = GetComponent<Image>();
-        
-    }
-    private void Update()
-    {
-        StartRandomAnimation();
-    }
-    public void StartRandomAnimation()
-    {
-
-        if (animator != null)
-        {
-            int randomIndex = Random.Range(0, 3);//ランダムに数字をintに割り当てる
-            animator.SetInteger("MemeMoveRandmIndex", randomIndex);//SetInteger呼び出し
-        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Hummer"))
         {
+            // ステート1からステート2への遷移
+            animator.SetBool("MemeReturn", true);
+            Debug.Log("MemeReturnをtrueに設定");
+
+            // ダメージ処理を呼ぶ
             TakeDamage();
-            //AttackedDamege呼び出し
-            AttackedDamege();
-            animator.SetTrigger("MemeReturn");
-            UpdateSprite();
         }
     }
 
@@ -48,21 +35,20 @@ public class Mole : MonoBehaviour
     {
         ScoreManager.Instance.AddScore(1);
 
-        // 次のアニメーションを開始するためのトリガーを設定
-        animator.SetTrigger("MemeChangeDamegeAnimation");
-
+        animator.SetTrigger("MemeFreeze"); // ステート2からステート3への遷移
         // 2秒遅延してUpdateSpriteを呼び出す
         Invoke("UpdateSprite", 2f);
+        StartCoroutine(ResetMemeReturn());
     }
 
-    public void AttackedDamege()
+    private IEnumerator ResetMemeReturn()
     {
-        if (animator != null)
-        {
-            int randomIndex = Random.Range(0, 5);//ランダムに数字をintに割り当てる
-            animator.SetInteger("MemeAttackedRandamIndex", randomIndex);//SetInteger呼び出し
-        }
+        // 3つ目のアニメーションが終わったことを待つ
+        yield return new WaitForSeconds(2f); // 適切な時間に調整
+        animator.SetBool("MemeReturn", false); // ステート3からステート4への遷移
+        Debug.Log("MemeReturnをfalseに設定");
     }
+
     private void UpdateSprite()
     {
         if (imageComponent != null && moleSprites.Count > 0)
@@ -71,9 +57,4 @@ public class Mole : MonoBehaviour
             imageComponent.sprite = moleSprites[randomIndex];
         }
     }
-       }
-
-      
-
-
-    
+}

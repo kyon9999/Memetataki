@@ -31,7 +31,7 @@ public class HammerManager : MonoBehaviour
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
             hummerOJT.transform.position = worldPosition;
 
-            Debug.Log("Input detected");
+            
             animator.SetTrigger("Move0");
 
             // Œø‰Ê‰¹‚ğƒ‰ƒ“ƒ_ƒ€‚ÉÄ¶

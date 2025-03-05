@@ -22,6 +22,7 @@ public class Mole : MonoBehaviour
     {
         if (other.CompareTag("Hummer"))
         {
+            Debug.Log("衝突がおきた");
             // ステート1からステート2への遷移
             animator.SetBool("MemeReturn", true);
             Debug.Log("MemeReturnをtrueに設定");
@@ -36,15 +37,15 @@ public class Mole : MonoBehaviour
         ScoreManager.Instance.AddScore(1);
 
         animator.SetTrigger("MemeFreeze"); // ステート2からステート3への遷移
-        // 2秒遅延してUpdateSpriteを呼び出す
-        Invoke("UpdateSprite", 2f);
-        StartCoroutine(ResetMemeReturn());
+       
+        StartCoroutine(ResetMemeReturn());//非同期処理スタート
     }
 
-    private IEnumerator ResetMemeReturn()
+    private IEnumerator ResetMemeReturn()　//非同期処理
     {
         // 3つ目のアニメーションが終わったことを待つ
         yield return new WaitForSeconds(2f); // 適切な時間に調整
+        UpdateSprite();
         animator.SetBool("MemeReturn", false); // ステート3からステート4への遷移
         Debug.Log("MemeReturnをfalseに設定");
     }
@@ -55,6 +56,13 @@ public class Mole : MonoBehaviour
         {
             int randomIndex = Random.Range(0, moleSprites.Count);
             imageComponent.sprite = moleSprites[randomIndex];
+
+            // MoleAnimatorAssignerを取得してメソッドを呼び出す
+            MoleAnimatorAssigner animatorAssigner = GetComponent<MoleAnimatorAssigner>();
+            if (animatorAssigner != null)
+            {
+                animatorAssigner.AssignRandomAnimator(); // ランダムなアニメーターを割り当てる
+            }
         }
     }
 }

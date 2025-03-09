@@ -11,30 +11,31 @@ public class Mole : MonoBehaviour
     public List<AnimationClip> damageAnimations;
     public List<Sprite> moleSprites;
 
-    private AudioSource audioSource; // ‚±‚Ìs‚ğ’Ç‰Á
-    public List<AudioClip> audioClips; // ‚±‚Ìs‚ğ’Ç‰Á
-
+    private AudioSource audioSource; // ï¿½ï¿½ï¿½Ìsï¿½ï¿½Ç‰ï¿½
+    public List<AudioClip> audioClips; // ï¿½ï¿½ï¿½Ìsï¿½ï¿½Ç‰ï¿½
+    
+    public 
     void Start()
     {
         animator = GetComponent<Animator>();
         moleCollider = GetComponent<Collider2D>();
         imageComponent = GetComponent<Image>();
-        audioSource = GetComponent<AudioSource>(); // ‚±‚Ìs‚ğ’Ç‰Á
+        audioSource = GetComponent<AudioSource>(); // ï¿½ï¿½ï¿½Ìsï¿½ï¿½Ç‰ï¿½
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Hummer"))
         {
-            Debug.Log("Õ“Ë‚ª‚¨‚«‚½");
-            // ƒXƒe[ƒg1‚©‚çƒXƒe[ƒg2‚Ö‚Ì‘JˆÚ
+            Debug.Log("ï¿½Õ“Ë‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+            // ï¿½Xï¿½eï¿½[ï¿½g1ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½g2ï¿½Ö‚Ì‘Jï¿½ï¿½
             animator.SetBool("MemeReturn", true);
-            Debug.Log("MemeReturn‚ğtrue‚Éİ’è");
+            Debug.Log("MemeReturnï¿½ï¿½trueï¿½Éİ’ï¿½");
 
-            // ƒ‰ƒ“ƒ_ƒ€‚È‰¹ºƒNƒŠƒbƒv‚ğÄ¶
-            PlayRandomAudioClip(); // ‚±‚Ìs‚ğ’Ç‰Á
+            // ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½È‰ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½bï¿½vï¿½ï¿½ï¿½Äï¿½
+            PlayRandomAudioClip(); // ï¿½ï¿½ï¿½Ìsï¿½ï¿½Ç‰ï¿½
             
-            // ƒ_ƒ[ƒWˆ—‚ğŒÄ‚Ô
+            // ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½
             TakeDamage();
         }
     }
@@ -43,19 +44,19 @@ public class Mole : MonoBehaviour
     {
         ScoreManager.Instance.AddScore(1);
 
-        animator.SetTrigger("MemeFreeze"); // ƒXƒe[ƒg2‚©‚çƒXƒe[ƒg3‚Ö‚Ì‘JˆÚ
+        animator.SetTrigger("MemeFreeze"); // ï¿½Xï¿½eï¿½[ï¿½g2ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½g3ï¿½Ö‚Ì‘Jï¿½ï¿½
 
-        StartCoroutine(ResetMemeReturn());//”ñ“¯Šúˆ—ƒXƒ^[ƒg
+        StartCoroutine(ResetMemeReturn());//ï¿½ñ“¯Šï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½^ï¿½[ï¿½g
     }
 
-    private IEnumerator ResetMemeReturn()@//”ñ“¯Šúˆ—
+    private IEnumerator ResetMemeReturn()//ï¿½ñ“¯Šï¿½ï¿½ï¿½ï¿½ï¿½
     {
-        // 3‚Â–Ú‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ªI‚í‚Á‚½‚±‚Æ‚ğ‘Ò‚Â
-        yield return new WaitForSeconds(1.5f); // “KØ‚ÈŠÔ‚É’²®
-        animator.SetBool("MemeReturn", false); // ƒXƒe[ƒg3‚©‚çƒXƒe[ƒg4‚Ö‚Ì‘JˆÚ
+        // 3ï¿½Â–Ú‚ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½Ò‚ï¿½
+        yield return new WaitForSeconds(1.5f); // ï¿½Kï¿½Ø‚Èï¿½ï¿½Ô‚É’ï¿½ï¿½ï¿½
+        animator.SetBool("MemeReturn", false); // ï¿½Xï¿½eï¿½[ï¿½g3ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½g4ï¿½Ö‚Ì‘Jï¿½ï¿½
         MoleAnimater();
         UpdateSprite();
-        Debug.Log("MemeReturn‚ğfalse‚Éİ’è");
+        Debug.Log("MemeReturnï¿½ï¿½falseï¿½Éİ’ï¿½");
     }
 
     private void UpdateSprite()
@@ -70,11 +71,11 @@ public class Mole : MonoBehaviour
 
     private void MoleAnimater()
     {
-        // MoleAnimatorAssigner‚ğæ“¾‚µ‚Äƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·
+        // MoleAnimatorAssignerï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½Äƒï¿½ï¿½\ï¿½bï¿½hï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½
         MoleAnimatorAssigner animatorAssigner = GetComponent<MoleAnimatorAssigner>();
         if (animatorAssigner != null)
         {
-            animatorAssigner.AssignRandomAnimator(); // ƒ‰ƒ“ƒ_ƒ€‚ÈƒAƒjƒ[ƒ^[‚ğŠ„‚è“–‚Ä‚é
+            animatorAssigner.AssignRandomAnimator(); // ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½ÈƒAï¿½jï¿½ï¿½ï¿½[ï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½è“–ï¿½Ä‚ï¿½
         }
     }
 

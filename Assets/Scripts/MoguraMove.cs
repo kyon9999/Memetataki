@@ -21,6 +21,7 @@ public class Mole : MonoBehaviour
         moleCollider = GetComponent<Collider2D>();
         imageComponent = GetComponent<Image>();
         audioSource = GetComponent<AudioSource>();
+        UpdateSprite();
     }
 
     void OnTriggerEnter2D(Collider2D other)

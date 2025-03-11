@@ -24,6 +24,11 @@ public class HammerManager : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.Instance.isGameActive)
+        {
+            return; // ゲームが非アクティブな場合、処理を中断
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePosition = Input.mousePosition;

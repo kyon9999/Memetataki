@@ -23,7 +23,15 @@ public class Mole : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         UpdateSprite();
     }
+    void Update()
+    {
+        if (!GameManager.Instance.isGameActive)
+        {
+            return; // ゲームが非アクティブな場合、処理を中断
+        }
 
+        // ゲームがアクティブな場合のロジックをここに記述
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Hummer") && !isHit)

@@ -3,6 +3,15 @@ using System.Collections.Generic;
 
 public class MoleAnimatorAssigner : MonoBehaviour
 {
+    void Update()
+    {
+        if (!GameManager.Instance.isGameActive)
+        {
+            return; // ゲームが非アクティブな場合、処理を中断
+        }
+
+        // ゲームがアクティブな場合のロジックをここに記述
+    }
     public List<RuntimeAnimatorController> animatorControllers;
 
     // アニメーターを割り当てるメソッド

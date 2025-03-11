@@ -2243,7 +2243,7 @@ GameObject:
   - component: {fileID: 1761632627}
   - component: {fileID: 1761632628}
   m_Layer: 0
-  m_Name: BuckButtom
+  m_Name: BackButtom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

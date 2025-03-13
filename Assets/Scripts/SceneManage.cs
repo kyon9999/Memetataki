@@ -7,26 +7,26 @@ public class SceneManage : MonoBehaviour
 {
     public void StartButtom()
     {
-        SceneManager.LoadScene("GameScene"); //ゲームシーンにかわる
+      FadeManager.Instance.LoadScene("GameScene",1f); //ゲームシーンにかわる
     }
 
     public void HowToPlay()
     {
-        SceneManager.LoadScene("HowToPlay1");//遊び方シーン１にかわる
+        FadeManager.Instance.LoadScene("HowToPlay1",1f);//遊び方シーン１にかわる
     }
 
     public void HowToPlay2()
     {
-        SceneManager.LoadScene("HowToPlay2");//遊び方シーン２にかわる
+        FadeManager.Instance.LoadScene("HowToPlay2", 1f);//遊び方シーン２にかわる
     }
 
     public void ReturnStartMenu()
     {
-        SceneManager.LoadScene("StartScene");//スタートシーンにかわる
+        FadeManager.Instance.LoadScene("StartScene", 1f);//スタートシーンにかわる
     }
 
     public void ResultMenu()
     {
-        SceneManager.LoadScene("ResultScene");//リザルトシーンにかわる
+        FadeManager.Instance.LoadScene("ResultScene", 1f);//リザルトシーンにかわる
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneManage : MonoBehaviour
 {
-    public void StartButtom()
+    public void GoGameScene()
     {
       FadeManager.Instance.LoadScene("GameScene",1f); //ƒQ[ƒ€ƒV[ƒ“‚É‚©‚í‚é
     }
